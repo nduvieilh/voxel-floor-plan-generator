@@ -1,6 +1,9 @@
 import './App.css';
-import Canvas from './Canvas';
+import Canvas from 'components/canvas/canvas';
 import { hueShift, Position, SvgVoxelEngine } from 'svg-voxel-engine';
+import { Button, Row, Col } from 'react-bootstrap';
+import { LeftColumn } from './left-column';
+import { RightColumn } from './right-column';
 
 function App() {
 
@@ -75,8 +78,18 @@ function App() {
 
   return (
     <div className="App">
-      <Canvas build={build} />
-      <button onClick={download}>Download</button>
+      <Row>
+        <Col>
+          <LeftColumn />
+        </Col>
+        <Col>
+          <Canvas build={build} />
+          <Button variant="primary" onClick={download}>Download</Button>
+        </Col>
+        <Col>
+          <RightColumn />
+        </Col>
+      </Row>
     </div>
   );
 }
