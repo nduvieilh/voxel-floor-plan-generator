@@ -1,25 +1,46 @@
 import './App.css';
-import svgVoxelEngineFactory, { hueShift } from 'svg-voxel-engine';
-
+import Canvas from './Canvas';
+import { hueShift, Position, SvgVoxelEngine } from 'svg-voxel-engine';
 
 function App() {
 
-  const size = 32;
-  const groundOffset = 5;
-  let numberOfTreeMax = 200;
-  const treeLeafColor = "#21c766";
-  const treeLeafHueShift = -140;
+  function saveSvg(svgEl: HTMLElement, name: string) {
+    svgEl.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    var svgData = svgEl.outerHTML;
+    var preface = '<?xml version="1.0" standalone="no"?>\r\n';
+    var svgBlob = new Blob([preface, svgData], { type: "image/svg+xml;charset=utf-8" });
+    var svgUrl = URL.createObjectURL(svgBlob);
+    var downloadLink = document.createElement("a");
+    downloadLink.href = svgUrl;
+    downloadLink.download = name;
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+  }
 
-  const svgVoxelEngine = svgVoxelEngineFactory({ domId: 'svg-voxel-zone', size });
+  const download = () => {
+    const el = document.getElementById('svg-voxel-zone');
+    if(el) {
+      saveSvg(el, 'image.svg');
+    } else {
+      alert('could not find <SVG /> element');
+    }
+  }
 
-  const R = () => {
+  let build = (svgVoxelEngine: SvgVoxelEngine) => {
     svgVoxelEngine.clear();
     // Add basic ground
     svgVoxelEngine.addFullSlab(1, "#21C786");
     svgVoxelEngine.addFullSlab(2, "#94979A", 5);
 
-    const treeFactory = position => {
-      const { x, y } = position;
+    const size = 32;
+    const groundOffset = 5;
+    let numberOfTreeMax = 200;
+    const treeLeafColor = "#21c766";
+    const treeLeafHueShift = -140;
+
+    const treeFactory = (position: Position) => {
+      const { x = 0, y = 0 } = position;
       const z = (x > groundOffset && x < size - groundOffset + 1 && y > groundOffset && y < size - groundOffset + 1) ? 3 : 2;
 
       const treeType = Math.ceil(Math.random() * 3)
@@ -48,35 +69,13 @@ function App() {
     for (let i = 0; i < numberOfTree; i++) {
       treeFactory({ x: Math.ceil(Math.random() * (size - 2)) + 1, y: Math.ceil(Math.random() * (size - 2)) + 1 })
     }
-
-    svgVoxelEngine.render();
   }
 
-  R();
 
-  document.addEventListener('click', R)
-
-  function saveSvg(svgEl, name) {
-    svgEl.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-    var svgData = svgEl.outerHTML;
-    var preface = '<?xml version="1.0" standalone="no"?>\r\n';
-    var svgBlob = new Blob([preface, svgData], { type: "image/svg+xml;charset=utf-8" });
-    var svgUrl = URL.createObjectURL(svgBlob);
-    var downloadLink = document.createElement("a");
-    downloadLink.href = svgUrl;
-    downloadLink.download = name;
-    document.body.appendChild(downloadLink);
-    downloadLink.click();
-    document.body.removeChild(downloadLink);
-  }
-
-  const download = () => {
-    const el = document.getElementById('svg-voxel-zone');
-    saveSvg(el, 'image.svg');
-  }
 
   return (
     <div className="App">
+      <Canvas build={build} />
       <button onClick={download}>Download</button>
     </div>
   );
