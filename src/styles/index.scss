@@ -1,5 +1,6 @@
 @import './variables.scss';
 @import 'bootstrap/scss/bootstrap';
+@import 'card.scss';
 
 
 body {
@@ -12,7 +13,8 @@ body {
   
   // CSS variable overrides
   --bs-body-bg: #{$bg-color};
-  --bs-body-color: #{$white}
+  --bs-body-color: #{$white};
+
 }
 
 code {

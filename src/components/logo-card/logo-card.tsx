@@ -5,7 +5,9 @@ function LogoCard() {
 
     return (
         <Card>
-            Voxel Floor Plan
+            <Card.Body>
+                <Card.Title>Voxel Floor Plan</Card.Title>
+            </Card.Body>
         </Card>
     )
 }

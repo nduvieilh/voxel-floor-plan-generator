@@ -1,9 +1,10 @@
-import './App.css';
+import './app.scss';
 import Canvas from 'components/canvas/canvas';
 import { hueShift, Position, SvgVoxelEngine } from 'svg-voxel-engine';
 import { Button, Row, Col } from 'react-bootstrap';
 import { LeftColumn } from './left-column';
 import { RightColumn } from './right-column';
+import { SettingsContextProvider } from 'contexts/settings';
 
 function App() {
 
@@ -78,18 +79,20 @@ function App() {
 
   return (
     <div className="App">
-      <Row>
-        <Col>
-          <LeftColumn />
-        </Col>
-        <Col>
-          <Canvas build={build} />
-          <Button variant="primary" onClick={download}>Download</Button>
-        </Col>
-        <Col>
-          <RightColumn />
-        </Col>
-      </Row>
+      <SettingsContextProvider>
+        <Row className="panel-layout">
+          <Col>
+            <LeftColumn />
+          </Col>
+          <Col md={6}>
+            <Canvas build={build} />
+            <Button variant="primary" onClick={download}>Download</Button>
+          </Col>
+          <Col>
+            <RightColumn />
+          </Col>
+        </Row>
+      </SettingsContextProvider>
     </div>
   );
 }

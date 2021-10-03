@@ -72,7 +72,7 @@ $bg-color: #001220;
 
 // // scss-docs-start theme-color-variables
 $primary:       #FA7268 !default;
-// $secondary:     $gray-600 !default;
+$secondary:     #C62368 !default;
 // $success:       $green !default;
 // $info:          $cyan !default;
 // $warning:       $yellow !default;
@@ -81,6 +81,16 @@ $primary:       #FA7268 !default;
 // $dark:          $gray-900 !default;
 // // scss-docs-end theme-color-variables
 
+
+$primaries-100: mix($primary, $secondary, 10%);
+$primaries-200: mix($primary, $secondary, 20%);
+$primaries-300: mix($primary, $secondary, 30%);
+$primaries-400: mix($primary, $secondary, 40%);
+$primaries-500: mix($primary, $secondary, 50%);
+$primaries-600: mix($primary, $secondary, 60%);
+$primaries-700: mix($primary, $secondary, 70%);
+$primaries-800: mix($primary, $secondary, 80%);
+$primaries-900: mix($primary, $secondary, 90%);
 // // scss-docs-start theme-colors-map
 // $theme-colors: (
 //   "primary":    $primary,
@@ -1267,7 +1277,7 @@ $primary:       #FA7268 !default;
 // $card-cap-color:                    null !default;
 // $card-height:                       null !default;
 // $card-color:                        null !default;
-// $card-bg:                           $white !default;
+$card-bg:                           lighten($bg-color, 10%) !default;
 // $card-img-overlay-padding:          $spacer !default;
 // $card-group-margin:                 $grid-gutter-width * .5 !default;
 // // scss-docs-end card-variables

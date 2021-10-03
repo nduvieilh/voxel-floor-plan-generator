@@ -1,7 +1,12 @@
 declare module 'svg-voxel-engine' {
-  type VoxelFace = "top" | "right" | "left";
 
-  type CanvasLightConfig = {
+  
+  export type VoxelFace = 
+    | 'top'
+    | 'right'
+    | 'left'
+
+  export type CanvasLightConfig = {
     light?: number;
     lightFace?: VoxelFace;
     lightHue?: number;
@@ -32,15 +37,17 @@ declare module 'svg-voxel-engine' {
     zSize?: number;
   }
 
+  export type HexColor = string;
+
   export class SvgVoxelEngine {
-    getMaxZ()
-    chunkAndMergePaths()
-    mergePaths(paths, id)
-    getEdgeDirection(edge)
-    getEdgesFromPathPoints(path)
-    getGlobalGridNeighbor(globalGrid, index)
-    getGlobalGridIndexes(index)
-    eraseUndershell()
+    //getMaxZ()
+    //chunkAndMergePaths()
+    //mergePaths(paths, id)
+    //getEdgeDirection(edge)
+    //getEdgesFromPathPoints(path)
+    //getGlobalGridNeighbor(globalGrid, index)
+    //getGlobalGridIndexes(index)
+    //eraseUndershell()
     deleteVoxel(position: Position)
     addFullSlab(stage = 1, color = "#00FF00", offset = 0)
     deleteBox(position, sizes)
@@ -49,22 +56,22 @@ declare module 'svg-voxel-engine' {
     clear()
     render()
     renderVoxels(voxelRenderFunction)
-    addTriFacePathFromVoxel(voxel, voxelIndex)
-    getShellKey(voxel, orientation, faceIndex)
-    getShellTopFaceXCoordinate(px, py, orientation, faceIndex, zDiff)
-    getShellTopFaceYCoordinate(px, py, orientation, faceIndex, zDiff)
-    getShellRightFaceXCoordinate(px, py, orientation, faceIndex)
-    getShellRightFaceYCoordinate(px, py, orientation, faceIndex, zDiff)
-    getShellLeftFaceYCoordinate(px, py, orientation, faceIndex, zDiff)
-    getShellLeftFaceXCoordinate(px, py, orientation, faceIndex)
-    makeSvgPathFromPoints(points)
-    makeVoxel(position, color)
-    makeVoxelFaces(position: Position)
-    generateId(position: Position)
-    voxelCompareFunction(a, b)
-    getVoxelAt(position: Position)
-    getZIndex(position: Position)
-    makeFaceColor(face, color)
+    //addTriFacePathFromVoxel(voxel, voxelIndex)
+    //getShellKey(voxel, orientation, faceIndex)
+    //getShellTopFaceXCoordinate(px, py, orientation, faceIndex, zDiff)
+    //getShellTopFaceYCoordinate(px, py, orientation, faceIndex, zDiff)
+    //getShellRightFaceXCoordinate(px, py, orientation, faceIndex)
+    //getShellRightFaceYCoordinate(px, py, orientation, faceIndex, zDiff)
+    //getShellLeftFaceYCoordinate(px, py, orientation, faceIndex, zDiff)
+    //getShellLeftFaceXCoordinate(px, py, orientation, faceIndex)
+    //makeSvgPathFromPoints(points)
+    //makeVoxel(position, color)
+    //makeVoxelFaces(position: Position)
+    //generateId(position: Position)
+    //voxelCompareFunction(a, b)
+    //getVoxelAt(position: Position)
+    //getZIndex(position: Position)
+    //makeFaceColor(face, color)
     darkenColor(color, amount)
     lightenColor(color, amount)
     getVoxelCoordinates(position: Position)
