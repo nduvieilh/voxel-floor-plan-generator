@@ -9,8 +9,8 @@ const initialState: SettingsContextState = {
     canvasConfig: {
         domId: 'canvas',
         size: 32,
-        width: 500,
-        height: 500,
+        width: 950,
+        height: 600,
         depthRatio: 0.5,
         voxelOffset: 1,
         lightCfg: {

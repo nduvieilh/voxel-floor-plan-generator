@@ -1,33 +1,28 @@
+import { InstructionsContext } from 'contexts/instructions';
 import { SettingsContext } from 'contexts/settings';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import svgVoxelEngineFactory from 'svg-voxel-engine';
-
-export type Props = {
-  build: (svgVoxelEngine: SvgVoxelEngine) => void;
-};
-
 
 
 export type SvgVoxelEngine = any;
 
-function Canvas(props: Props) {
-  const [state] = useContext(SettingsContext);
+function Canvas() {
+  const [settings] = useContext(SettingsContext);
+  const [{instructions}] = useContext(InstructionsContext);
+
 
   const {
     canvasConfig,
-  } = state;
-
-  console.log(canvasConfig);
-
-  //const [svgVoxelEngine] = useState(svgVoxelEngineFactory(canvasConfig));
+  } = settings;
 
   const svgVoxelEngine = svgVoxelEngineFactory(canvasConfig);
 
-  
 
   useEffect(() => {
+    svgVoxelEngine.clear();
     // Run provided build steps
-    props.build(svgVoxelEngine);
+    Array.from(instructions.values()).reduce((s, i) => i?.(s), svgVoxelEngine);
+
     svgVoxelEngine.render();
   })
 
