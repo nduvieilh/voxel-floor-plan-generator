@@ -11,10 +11,6 @@ function SettingsCard() {
     const {
         canvasConfig: config
     } = state;
-    // dispatch({
-    //     type: SettingsContextActionType.OTHER,
-    //     payload: 5,
-    // })
     const changeConfig = (payload: Partial<CanvasConfig>) => {
         dispatch({
             type: SettingsContextActionType.CHANGE_CANVAS_CONFIG,
